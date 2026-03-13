@@ -1,0 +1,13 @@
+streamlit
+opencv-python-headless
+torch
+torchvision
+Pillow
+streamlit-folium
+folium
+streamlit-option-menu
+scipy
+streamlit-image-comparison
+fpdf
+streamlit-js-eval
+numpy
