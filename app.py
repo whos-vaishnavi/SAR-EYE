@@ -139,7 +139,7 @@ def load_model():
         url = f'https://drive.google.com/uc?id={file_id}'
         st.info("Downloading AI Model from Cloud... (Wait 1-2 mins)")
         try:
-            gdown.download(url, model_path, quiet=False)
+            gdown.download(id=file_id, output=model_path, quiet=False, fuzzy=True)
             st.success("Model Downloaded Successfully!")
         except Exception as e:
             st.error(f"Download Failed: {e}")
