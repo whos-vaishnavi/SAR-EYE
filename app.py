@@ -26,23 +26,10 @@ SYSTEM_SENDER_EMAIL = "sar.eye.project@gmail.com"
 SYSTEM_APP_PASSWORD = "fkts aovs wrow fhny"
 
 # Auto-install libraries if missing
-def install(package):
-    try:
-        subprocess.check_call([sys.executable, "-m", "pip", "install", package])
-    except: pass
-
-try: import gdown
-except ImportError: install("gdown"); import gdown
-
-try: import cv2
-except ImportError: install("opencv-python-headless"); import cv2
-
-try: from fpdf import FPDF
-except ImportError: install("fpdf"); from fpdf import FPDF
-
-try: from streamlit_js_eval import get_geolocation
-except ImportError: install("streamlit-js-eval"); from streamlit_js_eval import get_geolocation
-
+import gdown
+import cv2
+from fpdf import FPDF
+from streamlit_js_eval import get_geolocation
 # --- 2. PAGE CONFIGURATION ---
 st.set_page_config(page_title="SAR-EYE PROTOCOL", page_icon="👁️", layout="wide", initial_sidebar_state="collapsed")
 
