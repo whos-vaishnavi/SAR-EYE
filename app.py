@@ -137,7 +137,7 @@ def load_model():
     
     # Auto-Download if missing
     if not os.path.exists(model_path):
-        file_id = '1A51AHq3917L9GKK3np-hzxDrPx4TCpwn' 
+        file_id = '1AoPrJ1vbmnOeaIZV0G-KzTa0i42BLgpJ' 
         st.info("Downloading AI Model from Cloud... (Wait 1-2 mins)")
         try:
             gdown.download(id=file_id, output=model_path, quiet=False, fuzzy=True)
