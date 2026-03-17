@@ -131,7 +131,7 @@ st.markdown("""
 
 # --- 6. MODEL LOADING ---
 @st.cache_resource
-    def load_model():
+def load_model():
         model_path = "generator_final.pth"
         # Auto-Download if missing
         if not os.path.exists(model_path):
