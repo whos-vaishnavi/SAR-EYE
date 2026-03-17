@@ -130,19 +130,21 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # --- 6. MODEL LOADING ---
+# --- 6. MODEL LOADING ---
 @st.cache_resource
 def load_model():
-        model_path = "generator_final.pth"
-        # Auto-Download if missing
-        if not os.path.exists(model_path):
-            file_id = '1A51AHq3917L9GKK3np-hzxDrPx4TCpwn' 
-            st.info("Downloading AI Model from Cloud... (Wait 1-2 mins)")
-            try:
-                gdown.download(id=file_id, output=model_path, quiet=False, fuzzy=True)
-                st.success("Model Downloaded Successfully!")
-            except Exception as e:
-                st.error(f"Download Failed: {e}")
-                return None, "DOWNLOAD_FAILED"
+    model_path = "generator_final.pth"
+    
+    # Auto-Download if missing
+    if not os.path.exists(model_path):
+        file_id = '1A51AHq3917L9GKK3np-hzxDrPx4TCpwn' 
+        st.info("Downloading AI Model from Cloud... (Wait 1-2 mins)")
+        try:
+            gdown.download(id=file_id, output=model_path, quiet=False, fuzzy=True)
+            st.success("Model Downloaded Successfully!")
+        except Exception as e:
+            st.error(f"Download Failed: {e}")
+            return None, "DOWNLOAD_FAILED"
 
     try:
         from model import UnetGenerator
@@ -151,12 +153,16 @@ def load_model():
         
         if os.path.exists(model_path):
             checkpoint = torch.load(model_path, map_location=torch.device('cpu'))
-            if 'model' in checkpoint: netG.load_state_dict(checkpoint['model'])
-            else: netG.load_state_dict(checkpoint)
+            if 'model' in checkpoint: 
+                netG.load_state_dict(checkpoint['model'])
+            else: 
+                netG.load_state_dict(checkpoint)
             netG.eval()
             return netG, "LOADED"
-        else: return None, "FILE_NOT_FOUND"
-    except Exception as e: return None, str(e)
+        else: 
+            return None, "FILE_NOT_FOUND"
+    except Exception as e: 
+        return None, str(e)
 
 model, model_status = load_model()
 
