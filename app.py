@@ -131,19 +131,18 @@ st.markdown("""
 
 # --- 6. MODEL LOADING ---
 @st.cache_resource
-def load_model():
-    model_path = "generator_final.pth"
-    # Auto-Download if missing
-    if not os.path.exists(model_path):
-        file_id = '1A51AHq3917L9GKK3np-hzxDrPx4TCpwn' 
-        url = f'https://drive.google.com/uc?id={file_id}'
-        st.info("Downloading AI Model from Cloud... (Wait 1-2 mins)")
-        try:
-            gdown.download(id=file_id, output=model_path, quiet=False, fuzzy=True)
-            st.success("Model Downloaded Successfully!")
-        except Exception as e:
-            st.error(f"Download Failed: {e}")
-            return None, "DOWNLOAD_FAILED"
+    def load_model():
+        model_path = "generator_final.pth"
+        # Auto-Download if missing
+        if not os.path.exists(model_path):
+            file_id = '1A51AHq3917L9GKK3np-hzxDrPx4TCpwn' 
+            st.info("Downloading AI Model from Cloud... (Wait 1-2 mins)")
+            try:
+                gdown.download(id=file_id, output=model_path, quiet=False, fuzzy=True)
+                st.success("Model Downloaded Successfully!")
+            except Exception as e:
+                st.error(f"Download Failed: {e}")
+                return None, "DOWNLOAD_FAILED"
 
     try:
         from model import UnetGenerator
